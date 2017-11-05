@@ -1,0 +1,17 @@
+<!-- ion-view view-title="Loka {{ ::CityName }}" left-buttons="leftButtons" -->
+
+    <ion-tabs class="tabs-icon tabs-color-dark tabs-background-energized tabs-striped tabs-bottom">
+
+        <ion-tab title="Produk Kaos" icon="ion-chevron-left" ui-sref="main.kaos"></ion-tab>
+
+        <ion-tab title="Info Produk" icon="ion-tshirt" ui-sref="main.tab-kaos.infokaos">
+            <ion-nav-view name="infokaos-tab"></ion-nav-view>
+        </ion-tab>
+
+        <ion-tab title="Foto Produk" icon="ion-images" ui-sref="main.tab-kaos.fotokaos">
+            <ion-nav-view name="fotokaos-tab"></ion-nav-view>
+        </ion-tab>
+
+    </ion-tabs>
+
+<!-- /ion-view -->

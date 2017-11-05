@@ -1,0 +1,22 @@
+<ion-view view-title="&nbsp;">
+
+    <ion-content class="has-header bg-gray-lighter" padding="false" ng-init="loadFotoVenue()">
+
+	    <ul ng-if="photos.length > 0 && code == 200" class="row">
+	        <li data-ng-repeat="photo in photos" class="foto-venue col-xs-6 col-sm-4 col-md-3 col-lg-2 bg-light border-solid border-gray overflow-hide border-1 border-all border-gray-lighter border-solid clearfix padding-10 cursor-pointer" ng-click="bukaFoto({prefix:photo.prefix, suffix:photo.suffix}, (photo.createdAt * 1000 | date: 'dd, MMMM yyyy'), photo.user.firstName)">
+	            <img data-ng-src="{{photo.prefix}}200{{photo.suffix}}" width="100%"/>
+				<div class="wrap padding-10">
+				    <div class="text-gray-light">
+				    	<i class="icon ion-android-calendar"></i> 
+				    	{{photo.createdAt * 1000 | date: 'dd, MMMM yyyy'}}
+				   	</div>
+				</div>
+	        </li>
+	    </ul>
+
+	    <div ng-if="photos.length == 0 || code != 200" class="fullscreen-elm display-inline-block" style="background:url(img/no-img.gif) no-repeat center;">
+	    	<div>&nbsp;</div>
+	    </div>
+	</ion-content>
+
+</ion-view>

@@ -1,0 +1,29 @@
+<ion-view title="{{ ::judul }}" left-buttons="leftButtons">
+	<ion-content has-header="true">
+		<ion-refresher pulling-text="Tarik untuk berita terbaru" on-refresh="LocalNewsRefresh()"></ion-refresher>
+		<ion-list>
+			<div ng-repeat="berita in news.posts">
+
+				<ion-item ng-if="channel == 'infopilihan'" class="item item-thumbnail-left item-icon-right cursor-pointer" type="item-text-wrap" ui-sref="main.berita.baca-berita-lokal-pilihan({newsLink: (berita.url | urlNews)})">
+					<img data-ng-src="{{berita.thumbnail_images.thumbnail.url}}" class="bg-gray-lighter border-all border-1 border-solid border-gray" />
+					<h3 class="wrap text-big-xs text-huge-sm text-huge-md text-giant-xl important" ng-bind-html="berita.title"></h3>
+					<p class="text-normal-mc text-normal-xs text-middle-sm">Ditulis oleh: {{ ::berita.author.name }}</p>
+					<p class="text-normal-mc text-normal-xs text-middle-sm"><i class="ion-calendar"></i> {{ ::(berita.modified | relativeDate) }}</p>
+	          		<i class="icon ion-chevron-right icon-accessory"></i>
+				</ion-item>
+
+				<ion-item ng-if="channel == 'travel'" class="item item-thumbnail-left item-icon-right cursor-pointer" type="item-text-wrap" ui-sref="main.berita.baca-berita-lokal-travel({newsLink: (berita.url | urlNews)})">
+					<img data-ng-src="{{berita.thumbnail_images.thumbnail.url}}" class="bg-gray-lighter border-all border-1 border-solid border-gray" />
+					<h3 class="wrap text-big-xs text-huge-sm text-huge-md text-giant-xl important" ng-bind-html="berita.title"></h3>
+					<p class="text-normal-mc text-normal-xs text-middle-sm">Ditulis oleh: {{ ::berita.author.name }}</p>
+					<p class="text-normal-mc text-normal-xs text-middle-sm"><i class="ion-calendar"></i> {{ ::(berita.modified | relativeDate) }}</p>
+	          		<i class="icon ion-chevron-right icon-accessory"></i>
+				</ion-item>
+	        	
+		        <ion-item ng-if="$index % 5 == 0 && $index != 0 && iklan">
+		          <img data-ng-src="{{iklan.image}}" />
+		        </ion-item>
+			</div>
+		</ion-list>
+	</ion-content>
+</ion-view>

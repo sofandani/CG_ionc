@@ -1,0 +1,88 @@
+@charset "UTF-8";
+
+@import
+
+"variables";
+
+// STYLING SINGLE ELEMENT
+
+.tabs-secondary {height:55px}
+
+.venue-rating
+{
+	width:32px;
+	height:32px;
+}
+
+.venue-meta-height {
+	height:32px
+}
+
+/*.venue-header-bg {
+  position: absolute;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left:0;
+  right:0;
+}*/
+
+.header-list-card,
+.cover-background {
+  background-size: cover;
+  background-position:left top;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+div.scroll div#tips {
+  min-height: 200px;
+}
+
+.iconMenu i{
+  font-size: 500%;
+}
+
+map{
+  height: 100% !important
+}
+
+.scroll, .mapWrap {
+  height: 100%;
+}
+
+#search-input {
+  text-align: center;
+}
+
+#search-bar {
+  /*background: none;*/
+  position: relative;
+  width: 100%;
+  top: 44px;
+  z-index: 3;
+}
+#search-bar .item {
+  /*background: none;*/
+  border: none;
+}
+#content {
+  top: 93px;
+}
+
+.keranjang-pop .popup-head
+{
+  display: none
+}
+
+.keranjang-pop .popup-buttons button
+{
+  line-height:40px
+}
+
+.keranjang-pop .popup
+{
+  background: $light;
+  border: #{'solid 3px '+$energized};
+}

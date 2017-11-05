@@ -1,0 +1,51 @@
+<ion-view title="{{ ::spotName }}" left-buttons="leftButtons">
+
+  <ion-content has-header="true">
+
+      <ion-refresher pulling-text="Tarik untuk loka terbaru" on-refresh="VenueListsRefresh()"></ion-refresher>
+
+      <ion-list ng-if="venue.length > 0 && code == 200">
+
+      <div ng-repeat="lists in venue" >
+
+        <ion-item class="item item-thumbnail-left item-icon-right cursor-pointer" type="item-text-wrap" ui-sref="main.tabs.venue({listsID: listid, venueId: lists.venue.id})" id="{{$index + 1}}">
+
+          <img ng-if="lists.photo" data-ng-src="{{ ::lists.photo.prefix }}200x200{{ ::lists.photo.suffix }}" class="border-all border-1 border-solid border-gray" />
+          <img ng-if="!lists.photo" data-ng-src="img/no-img.gif" class="bg-gray-lighter border-all border-1 border-solid border-gray" />
+
+          <h3 venue-id="{{ ::lists.venue.id }}" class="text-middle-mc text-big-xs text-big-sm text-huge-md text-giant-xl wrap important">{{ ::lists.venue.name }}</h3>
+
+          <p class="text-normal-mc text-middle-xs wrap">
+            <span class="col-mc-show col-xs-show col-sm-hide">{{ ::(lists.venue.location.formattedAddress.join(', ') | truncate:25) }}</span>
+            <span class="col-mc-hide col-xs-hide col-sm-show">{{ ::(lists.venue.location.formattedAddress.join(', ')) }}</span>
+          </p>
+
+          <span ng-show="lists.venue.categories.length > 0" title="{{lists.venue.categories[0].name}}" class="bg-calm display-inline-block border-radius-4">
+            <img data-ng-src="{{lists.venue.categories[0].icon.prefix}}32{{lists.venue.categories[0].icon.suffix}}" class="v-align-middle" width="32" height="32" />
+          </span>
+
+          <span ng-show="lists.venue.rating > 0">
+            <span ng-class="RatingClass({{ ::lists.venue.rating }})" class="venue-rating v-align-middle text-light text-center text-normal display-inline-block padding-5 border-radius-4">
+            {{ ::lists.venue.rating }}
+            </span>
+          </span>
+
+          <span class="bg-gray venue-meta-height v-align-middle text-light text-center text-normal display-inline-block padding-5 border-radius-4">
+            <i class="ion-android-walk"></i> {{ ::(lists.venue.stats.checkinsCount | thousandSuffix) }}
+          </span>
+
+          <i class="icon ion-chevron-right icon-accessory"></i>
+          
+        </ion-item>
+
+        <ion-item ng-if="$index % 5 == 0 && $index != 0 && iklan">
+          <img data-ng-src="{{iklan.image}}" />
+        </ion-item>
+        
+      </div>
+
+      </ion-list>
+      
+  </ion-content>
+
+</ion-view>

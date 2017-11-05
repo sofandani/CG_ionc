@@ -1,0 +1,16 @@
+<ion-view view-title="Pratampil Kaos">
+
+    <ion-content class="has-header bg-gray-lighter" padding="false" ng-init="loadFotoTees()">
+
+	    <ul class="row">
+	        <li class="col-xs-12 col-sm-12 col-md-6 col-lg-6 bg-light border-solid border-gray overflow-hide border-1 border-all border-gray-lighter border-solid clearfix padding-10">
+				<img data-ng-src="http://tees.co.id/public/uploads/images/{{ ::tees.store_id }}/{{ ::tees.id }}/cache/{{ ::tees.id }}_{{ ::tees.default_model_id }}_{{ ::tees.default_color_id }}_design.jpg" class="width-100-percent" />
+	        </li>
+	        <li class="col-xs-12 col-sm-12 col-md-6 col-lg-6 bg-light border-solid border-gray overflow-hide border-1 border-all border-gray-lighter border-solid clearfix padding-10">
+				<img data-ng-src="http://tees.co.id/public/uploads/images/{{ ::tees.store_id }}/{{ ::tees.id }}/cache/{{ ::tees.id }}_{{ ::tees.default_model_id }}_{{ ::tees.default_color_id }}_front.png" class="width-100-percent" />
+	        </li>
+	    </ul>
+
+	</ion-content>
+
+</ion-view>

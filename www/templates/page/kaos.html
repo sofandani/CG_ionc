@@ -1,0 +1,38 @@
+<ion-view view-title="Kaos Khas">
+
+    <ion-content has-header="true" class="has-header bg-gray-lighter" padding="false" ng-init="TeesInit()">
+
+      <ul ng-if="tees.length > 0" class="row">
+        <li data-ng-repeat="kaos in tees | filter: { keywords: 'kuningan asri' }" id="{{ ::kaos.id }}" class="col-mc-6 col-xs-6 col-sm-4 col-md-3 col-lg-3 col-xl-2 bg-light overflow-hide border-1 border-all border-solid clearfix padding-10 border-gray-lighter">
+          <div ui-sref="main.tab-kaos.infokaos({id: kaos.id})" class="cursor-pointer display-inline-block width-100-percent">
+            <img data-ng-src="http://tees.co.id/public/uploads/images/{{ ::kaos.image_thumb }}" class="width-100-percent"/>
+            <h5 class="text-center nowrap">{{ ::kaos.name }}</h5>
+            <div class="padding-0 margin-bottom-10">
+              <div class="text-gray-light">
+                <div class="text-center no-margin">
+                  <h4 ng-if="kaos.is_discount == 1" class="text-royal text-big">
+                      <u>Rp. {{ (kaos.price_discount | number) }}</u>
+                  </h4>
+                  <h4 ng-if="kaos.is_discount == 0" class="text-big text-assertive">
+                    Rp. {{ (kaos.price | number) }}
+                  </h4>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="text-center border-solid border-1 border-top border-gray-lighter">
+            <button class="button button-full button-balanced icon-left ion-android-cart nowrap">
+              <span class="col-mc-show col-xs-hide col-ss-hide col-md-hide col-sm-hide col-lg-hide col-xl-hide">Beli Ini</span>
+              <span class="col-mc-hide col-xs-show col-ss-show col-md-hide col-sm-hide col-lg-hide col-xl-hide">Beli Kaos Ini</span>
+              <span class="col-mc-hide col-xs-hide col-ss-hide col-sm-show col-md-show col-lg-show col-xl-show">Beli Kaos Khas Ini</span>
+            </button>
+          </div>
+        </li>
+      </ul>
+
+      <div ng-if="tees.length == 0" class="fullscreen-elm display-inline-block" style="background:url(img/no-img.gif) no-repeat center;">
+        <div>&nbsp;</div>
+      </div>
+  </ion-content>
+
+</ion-view>

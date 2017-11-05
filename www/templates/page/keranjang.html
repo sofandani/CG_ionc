@@ -1,0 +1,56 @@
+<ion-view view-title="Keranjang Belanja">
+
+  <ion-content class="has-header bg-gray-lighter" padding="true">
+
+    <ion-list ng-if="cart.length > 0">
+
+      <div ng-repeat="carts in cart" id="{{ ::carts.cache }}" class="itemCart">
+
+        <ion-item class="item" type="item-text-wrap"><!-- ui-sref=""-->
+
+          <a ui-sref="main.tab-oleholeh.info({id: carts.id})" class="display-inline-block float-right width-mc-60 width-xs-80 width-ss-90 width-sm-125 width-md-125">
+            <img data-ng-src="{{ ::carts.gambar }}" class="border-all border-1 border-solid border-gray width-100-percent" />
+          </a>
+
+          <h3 class="text-middle-xs text-huge-sm text-huge-md text-giant-xl nowrap text-capitalize important">
+            <a ui-sref="main.tab-oleholeh.info({id: carts.id})" class="text-assertive display-inline-block">
+              <span class="col-mc-show col-xs-show col-sm-hide">{{ ::(carts.nama | truncate:25) }}</span>
+              <span class="col-mc-hide col-xs-hide col-sm-show">{{ ::carts.nama }}</span>
+            </a> <i class="icon ion-link"></i>
+          </h3>
+
+          <p class="text-normal-mc text-middle-xs text-big-sm">Total Barang: <span class="text-bold text-assertive">{{ ::carts.total }}</span></p>
+          <p class="text-normal-mc text-middle-xs text-big-sm">Total Harga: <span class="text-bold text-balanced">Rp. {{ (carts.total * carts.harga | number) }}</span> 
+          <span class="text-normal-mc text-normal-xs important wrap">(Belum termasuk ongkos kirim & kode transaksi)</span></p>
+
+          <span>
+            
+          </span>
+
+          <div class="col-mc-show col-xs-show col-ss-show col-sm-hide col-md-hide col-lg-hide col-xl-hide">
+            <button class="button button-small button-assertive icon-left ion-calculator" ui-sref="main.kasir({id:carts.id, total:carts.total})">Ke Kasir</button>
+            <button class="button button-small button-stable icon-left ion-trash-a" ng-click="deleteCart(carts.cache, carts.id)">Hapus Pesanan</button>
+          </div>
+
+          <div class="col-mc-hide col-xs-hide col-ss-hide col-sm-show col-md-show col-lg-show col-xl-show">
+            <button class="button button-assertive icon-left ion-calculator" ui-sref="main.kasir({id:carts.id, total:carts.total})">Ke Kasir</button>
+            <button class="button button-stable icon-left ion-trash-a" ng-click="deleteCart(carts.cache, carts.id)">Hapus Pesanan</button>
+          </div>
+
+        </ion-item>
+
+      </div>
+
+    </ion-list>
+
+    <ion-list ng-if="cart.length == 0" class="fullscreen-elm display-block">
+      <ion-item class="no-padding">
+        <h3 class="text-big-mc important bg-assertive padding-10 text-light">
+          <i class="icon ion-alert-circled"></i> Ups..</h3>
+        <p class="padding-10">Keranjang Belanja Anda Kosong</p>
+      </ion-item>
+    </ion-listdiv>
+
+  </ion-content>
+
+</ion-view>

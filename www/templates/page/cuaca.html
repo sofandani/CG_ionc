@@ -1,0 +1,35 @@
+<ion-view title="Cuaca di Kuningan" left-buttons="leftButtons">
+	<ion-content has-header="true" scroll="false">
+
+		<div class="list card">
+
+            <div class="item bg-gray-lighter">
+                <img data-ng-src="{{ ::weather.icon_url }}" class="margin-right-md-30 width-mc-20-percent width-xs-10-percent width-sm-6-percent width-md-7-percent width-lg-7-percent width-xl-8-percent float-right" />
+				<h1 class="no-margin">
+					<span class="text-giant-xs text-giant-sm text-massive-md text-super-massive-lg text-tera-xl text-positive">{{ ::weather.temp_c }}</span>
+					<span class="text-huge text-positive">&deg;C</span>
+					<span class="text-normal-mc text-normal-xs text-normal-sm text-middle-md text-middle-lg text-big-xl display-block text-gray">suhu rata-rata</span>
+				</h1>
+			</div>
+
+			<div class="item item-body text-normal-mc text-middle-xs text-big-sm text-huge-md text-huge-lg text-giant-xl">
+				Cuaca {{ ::weather.display_location.city }}, 
+				{{ ::weather.weather }}
+			</div>
+
+        </div>
+		
+        <div>
+			<div ng-repeat="wu in forecast.txt_forecast.forecastday" ng-if="wu.period % 2 === 0 && wu.period != 0" class="wrap col-mc-12 no-padding no-margin margin-bottom-10 padding-bottom-5 border-bottom border-solid border-1 border-gray-lighter noborder-last-bottom">
+				<div class="col-mc-2 col-ss-2 col-xs-2 col-sm-1 no-padding no-margin">
+					<img data-ng-src="{{ ::wu.icon_url }}" class="padding-10 width-100-percent" />
+				</div>
+
+				<div class="col-mc-10 col-ss-10 col-xs-10 col-sm-9 no-padding no-margin">
+					<h3 class="text-middle-mc text-middle-xs middle-ss text-big-sm text-big-md text-huge-lg text-massive-xl no-padding no-margin important">{{ ::wu.title }}</h3>
+					<span class="text-normal-mc text-normal-xs text-middle-sm text-middle-md text-big-lg text-big-xl">{{ ::wu.fcttext_metric }}</span>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

@@ -1,0 +1,19 @@
+<ion-view view-title="Foto Kemasan Oleh-oleh">
+
+    <ion-content class="has-header bg-gray-lighter" padding="false" ng-init="loadFotoBukalapak()">
+
+	    <ul class="row" ng-if="bukalapak.images.length > 1">
+	        <li ng-repeat="BL in bukalapak.small_images" class="col-xs-6 col-sm-6 col-md-4 col-lg-4 bg-light border-solid border-gray overflow-hide border-1 border-all border-gray-lighter border-solid clearfix padding-10">
+				<img data-ng-src="{{(BL | ImageBLmedium)}}" class="width-100-percent" />
+	        </li>
+	    </ul>
+
+	    <ul class="row" ng-if="bukalapak.images.length == 1">
+	        <li ng-repeat="BL in bukalapak.images" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bg-light border-solid border-gray overflow-hide border-1 border-all border-gray-lighter border-solid clearfix padding-10">
+				<img data-ng-src="{{ ::BL }}" class="width-100-percent" />
+	        </li>
+	    </ul>
+
+	</ion-content>
+
+</ion-view>

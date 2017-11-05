@@ -1,0 +1,17 @@
+<!-- ion-view view-title="Loka {{ ::CityName }}" left-buttons="leftButtons" -->
+
+    <ion-tabs class="tabs-icon tabs-color-dark tabs-background-energized tabs-striped tabs-bottom">
+
+        <ion-tab title="Oleh-Oleh Khas" icon="ion-chevron-left" ui-sref="main.oleh-oleh"></ion-tab>
+
+        <ion-tab title="Info Produk" icon="ion-bag" ui-sref="main.tab-oleholeh.info">
+            <ion-nav-view name="infooleholeh-tab"></ion-nav-view>
+        </ion-tab>
+
+        <ion-tab title="Foto Produk" icon="ion-images" ui-sref="main.tab-oleholeh.foto">
+            <ion-nav-view name="fotooleholeh-tab"></ion-nav-view>
+        </ion-tab>
+
+    </ion-tabs>
+
+<!-- /ion-view -->

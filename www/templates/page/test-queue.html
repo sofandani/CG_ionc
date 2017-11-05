@@ -1,0 +1,10 @@
+<ion-view>
+	<ion-content ng-init="initqueue()">
+		<ion-list>
+			<ion-item type="item-text-wrap">{{ ::queue[1].current_observation.icon_url }}</ion-item>
+		</ion-list>
+		<ion-list ng-repeat="menu in queue[0].menuhome">
+			<ion-item type="item-text-wrap">{{ ::menu.name }}</ion-item>
+		</ion-list>
+	</ion-content>
+</ion-view>

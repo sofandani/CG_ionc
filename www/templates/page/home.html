@@ -1,0 +1,37 @@
+<ion-view view-title="&nbsp;" left-buttons="leftButtons">
+
+    <ion-content has-header="true" padding="false" class="has-header bg-light" scroll="false">
+
+      <div class="width-100-percent height-100-percent display-inline-block">
+       	<div class="height-100-percent">
+
+          <div ng-init="HomeInit()" class="border-1 border-bottom border-gray-lighter border-solid display-inline-block width-100-percent height-100-percent">
+         		<div data-ng-repeat="menu in menuhome" class="col-mc-4 col-xs-4 col-ss-4 col-sm-4 col-md-4 col-lg-3 col-xl-3 no-padding height-mc-100-4 height-lg-100-3">
+
+              <div ui-sref="main.kategori-loka({listsID: menu.id})" ng-if="menu.id != false" class="text-center border-1 border-all border-gray-lighter border-solid bg-light cursor-pointer height-100-percent nowrap text-small-mc text-normal-xs text-medium-ss text-medium-sm text-semi-big-md text-big-lg text-huge-xl position-relative">
+                <div class="margin-auto position-absolute top-0 bottom-0 left-0 right-0 width-50-percent height-53-percent">
+                  <div class="iconMenu text-{{ ::menu.color }}">
+                    <i class="icon {{ ::menu.icon }}"></i> 
+                  </div>
+                  {{ ::menu.name }}
+                </div>
+              </div>
+
+              <div ui-sref="main.{{ ::menu.slug }}" ng-if="menu.id == false" class="text-center border-1 border-all border-gray-lighter border-solid bg-light cursor-pointer height-100-percent nowrap text-small-mc text-normal-xs text-medium-ss text-medium-sm text-semi-big-md text-big-lg text-huge-xl position-relative">
+                <div class="margin-auto position-absolute top-0 bottom-0 left-0 right-0 width-50-percent height-53-percent">
+                  <div class="iconMenu text-{{ ::menu.color }}">
+                    <i class="icon {{ ::menu.icon }}"></i> 
+                  </div>
+                  {{ ::menu.name }}
+                </div>
+              </div>
+
+         		</div>
+          </div>
+
+       	</div>
+      </div>
+
+    </ion-content>
+
+</ion-view>

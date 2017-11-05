@@ -1,0 +1,74 @@
+{
+	"kontak":[
+		{
+			"prefix":{
+				"local":"0232",
+				"world":"+62232"
+			}
+		},
+		{
+			"data":[
+				{
+					"nama":"POLRES KUNINGAN",
+					"nomor":"875611",
+					"icon":"ios-telephone"
+				},
+				{
+					"nama":"DAMKAR KUNINGAN",
+					"nomor":"871113",
+					"icon":"ios-telephone"
+				},
+				{
+					"nama":"PLN KUNINGAN",
+					"nomor":"871930",
+					"icon":"ios-telephone"
+				},
+				{
+					"nama":"RSUD KUNINGAN",
+					"nomor":"871885",
+					"icon":"ios-telephone"
+				},
+				{
+					"nama":"PDAM KUNINGAN",
+					"nomor":"871190",
+					"icon":"ios-telephone"
+				},
+				{
+					"nama":"Polisi Militer KUNINGAN",
+					"nomor":"871140",
+					"icon":"ios-telephone"
+				},
+				{
+					"nama":"Sekretariat Daerah KUNINGAN",
+					"nomor":"871045",
+					"icon":"ios-telephone"
+				},
+				{
+					"nama":"BPBD KUNINGAN",
+					"nomor":"871273",
+					"icon":"ios-telephone"
+				},
+				{
+					"nama":"KODIM KUNINGAN",
+					"nomor":"871887",
+					"icon":"ios-telephone"
+				},
+				{
+					"nama":"Satpol PP KUNINGAN",
+					"nomor":"871261",
+					"icon":"ios-telephone"
+				},
+				{
+					"nama":"PEMDA KUNINGAN",
+					"nomor":"871040",
+					"icon":"ios-telephone"
+				},
+				{
+					"nama":"DISHUB KUNINGAN",
+					"nomor":"871187",
+					"icon":"ios-telephone"
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,53 @@
+<ion-view title="Pencarian Loka" left-buttons="leftButtons">
+
+	<form id="search-bar" ng-submit="search_venue()">
+		<div class="item item-input padding-0 margin-5">
+		  <label class="item-input-wrapper" id="search-input">
+		    <i class="icon ion-search placeholder-icon"></i>
+		    <input type="search" placeholder="Cari Loka di Kuningan" ng-model="query">
+		  </label>
+		</div>
+	</form>
+
+  <ion-content id="content" has-header="true" padding="false" push-search>
+    <ion-list ng-if="venue.length > 0 && code == 200">
+
+    <div ng-repeat="v in venue">
+
+      <ion-item class="item item-thumbnail-left item-icon-right cursor-pointer" type="item-text-wrap" ui-sref="main.tabs.venue({listsID: 'cari', venueId: v.venue.id})" id="{{$index + 1}}">
+
+        <img ng-if="v.venue.photos.groups.length > 0" data-ng-src="{{ ::v.venue.photos.groups[0].items[0].prefix }}200x200{{ ::v.venue.photos.groups[0].items[0].suffix }}" class="border-all border-1 border-solid border-gray" />
+        <img ng-if="v.venue.photos.groups.length == 0" data-ng-src="img/no-img.gif" class="bg-gray-lighter border-all border-1 border-solid border-gray" />
+
+        <h3 venue-id="{{ ::v.venue.id }}" class="autovmin-4">{{ ::v.venue.name }}</h3>
+
+        <p>{{(v.venue.location.formattedAddress.join(', '))}}</p>
+
+        <span ng-show="v.venue.categories.length > 0" title="{{v.venue.categories[0].name}}" class="bg-calm display-inline-block border-radius-4">
+          <img data-ng-src="{{v.venue.categories[0].icon.prefix}}32{{v.venue.categories[0].icon.suffix}}" class="v-align-middle" width="32" height="32" />
+        </span>
+
+        <span ng-show="v.venue.rating > 0">
+          <span ng-class="RatingClass({{ ::v.venue.rating }})" class="venue-rating v-align-middle text-light text-center text-normal display-inline-block padding-5 border-radius-4">
+          {{ ::v.venue.rating }}
+          </span>
+        </span>
+
+        <span class="bg-gray venue-meta-height v-align-middle text-light text-center text-normal display-inline-block padding-5 border-radius-4">
+          <i class="ion-android-walk"></i> {{v.venue.stats.checkinsCount | thousandSuffix}}
+        </span>
+
+        <i class="icon ion-chevron-right icon-accessory"></i>
+        
+      </ion-item>
+
+      <ion-item ng-if="$index % 5 == 0 && $index != 0 && iklan">
+        <img data-ng-src="{{iklan.image}}" />
+      </ion-item>
+    </div>
+
+    </ion-list>
+
+  </ion-content>
+
+</ion-view>

@@ -1,0 +1,41 @@
+<ion-view view-title="Oleh - Oleh Khas">
+
+  <form id="search-bar" ng-submit="search_bl()">
+    <div class="item item-input padding-0 margin-5 border-2 border-bottom border-solid border-gray-lighter bg-light important">
+      <label class="item-input-wrapper border-1 border-solid border-gray" id="search-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="search" placeholder="Cari Oleh - Oleh Khas Kuningan" ng-model="query">
+      </label>
+    </div>
+  </form>
+
+  <ion-content ng-attr-id="{{bukalapak.length > 10 && 'content' || 'content' }}" has-header="true" padding="false" class="bg-gray-lighter" push-search>
+
+    <ul ng-if="bukalapak.length > 0" class="row">
+      <li data-ng-repeat="BL in bukalapak | filter:{name: '!collagen'} | filter:{name: '!glukogen'} | filter:{name: '!glucogen'} | filter:{name: '!etagen'} | filter:{name: '!etagoat'} | filter:{name: '!moment'} | filter:{name: '!mangivera'} | orderBy:'price'" class="col-mc-6 col-xs-6 col-ss-6 col-sm-4 col-md-3 col-lg-3 col-xl-2 bg-light overflow-hide border-1 border-all border-solid clearfix padding-10 border-gray-lighter" ng-if="BL.stock > 0">
+        <div ui-sref="main.tab-oleholeh.info({id: BL.id})" class="cursor-pointer display-inline-block width-100-percent">
+          <img ng-if="BL.small_images" data-ng-src="{{(BL.small_images[0] | ImageBLmedium)}}" class="width-100-percent" />
+          <img ng-if="!BL.small_images" src="img/no-img.gif" class="width-100-percent" />
+          <h5 class="text-center nowrap text-capitalize">{{ ::BL.name }}</h5>
+          <div class="padding-10">
+            <div class="text-gray-light">
+              <h4 class="text-center no-margin-important text-assertive">Rp. {{ (BL.price | number) }}</h4>
+            </div>
+          </div>
+        </div>
+        <div class="text-center border-solid border-1 border-top border-gray-lighter">
+          <button class="button button-full button-balanced icon-left ion-android-cart nowrap" ng-click="beli(BL.id, BL.name, BL.small_images[0], BL.price, BL.stock)">
+            <span class="col-mc-show col-xs-hide col-ss-hide col-sm-hide col-md-hide col-lg-hide col-xl-hide">Beli Ini</span>
+            <span class="col-mc-hide col-xs-show col-ss-show col-sm-hide col-md-hide col-lg-hide col-xl-hide">Beli Oleh2 Ini</span>
+            <span class="col-mc-hide col-xs-hide col-ss-hide col-sm-show col-md-show col-lg-show col-xl-show">Beli Oleh - Oleh Ini</span>
+          </button>
+        </div>
+      </li>
+    </ul>
+
+    <div ng-if="bukalapak.length == 0" class="fullscreen-elm display-inline-block" style="background:url(img/cry.gif) no-repeat center;">
+      <div>&nbsp;</div>
+    </div>
+  </ion-content>
+
+</ion-view>

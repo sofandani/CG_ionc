@@ -1,0 +1,63 @@
+<ion-view view-title="Info Oleh - Oleh">
+
+    <ion-content class="has-header">
+
+        <div class="header-list-card">
+          
+          <ion-list class="card no-margin">
+
+              <ion-item class="wrap item-thumbnail bg-gray-lighter no-margin col-xs-12 col-sm-12 col-md-4 col-lg-5">
+                <img data-ng-src="{{(BL.small_images[0] | ImageBLmedium)}}" class="width-100-percent" />
+              </ion-item>
+
+              <ion-item class="item-body col-xs-12 col-sm-12 col-md-8 col-lg-7">
+
+                <div class="margin-top-0 margin-bottom-xs-5 margin-bottom-ss-5 margin-bottom-sm-5 margin-bottom-md-10 margin-bottom-lg-20 margin-bottom-xl-20 text-capitalize text-big-xs text-big-ss text-huge-md text-giant-lg text-massive-xl line-height-initial important">{{ ::BL.name }}</div>
+
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 no-padding">
+                    <div class="display-block clearfix margin-bottom-xs-5 margin-bottom-ss-5 margin-bottom-sm-5 margin-bottom-md-10 margin-bottom-lg-15 margin-bottom-xl-15 ">
+                      <span ng-if="BL.price < 90000" class="text-assertive text-big-xs text-huge-sm text-huge-md text-giant-xl">
+                        Rp. {{ (BL.price | number) }}
+                      </span>
+                      <span ng-if="BL.price > 90000" class="text-assertive text-big-xs text-huge-sm text-huge-md text-giant-xl">
+                        Rp. {{ (BL.price | ribuAwalan) }}
+                      </span>
+                    </div>
+                    <div ng-if="BL.stock" class="display-block clearfix">
+                      <span class="text-normal-xs">Stok: 
+                      <span class="text-dark">{{ ::BL.stock }}</span></span>
+                    </div>
+                    <div ng-if="BL.weight" class="display-block clearfix">
+                      <span class="text-normal-xs">Berat: 
+                      <span class="text-dark">{{ ::BL.weight | thousandSuffix }} gram</span></span>
+                    </div>
+                  </div>
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 no-padding text-center">
+                    <button class="button button-full button-balanced icon-left ion-android-cart nowrap" ng-click="beli(BL.id, BL.name, BL.small_images[0], BL.price, BL.stock)">
+                      <span class="col-mc-show col-xs-show col-ss-show col-sm-hide col-md-hide col-lg-hide col-xl-hide">Beli Oleh2 Ini</span>
+                      <span class="col-mc-hide col-xs-hide col-ss-hide col-sm-show col-md-show col-lg-show col-xl-show">Beli Oleh - Oleh Ini</span>
+                    </button>
+                    <button class="button button-full button-calm icon-left ion-chatbox nowrap" ng-click="beli(BL.id, BL.name, BL.small_images[0], BL.price, BL.stock)">
+                      <span class="col-mc-show col-xs-show col-ss-show col-sm-hide col-md-hide col-lg-hide col-xl-hide">Tanya Stok</span>
+                      <span class="col-mc-hide col-xs-hide col-ss-hide col-sm-show col-md-show col-lg-show col-xl-show">Tanya Stok Produk</span>
+                    </button>
+                  </div>
+              </ion-item>
+              </ion-item>
+
+              <ion-item class="item-body text-normal-xs text-middle-sm text-middle-md text-big-lg text-huge-xl" ng-if="BL.desc">
+                <div class="text-justify" ng-bind-html="BL.desc"></div>
+              </ion-item>
+
+              <ion-item class="item-body">
+                <a class="button button-block button-dark" ui-sref="main.tab-oleholeh.tos({typetos: 'bukalapak'})">
+                  <i class="ion-help-circled"></i> Lihat Tata Cara Pembelian
+                </a>
+              </ion-item>
+
+          </ion-list>
+
+        </div>
+
+    </ion-content>
+</ion-view>

@@ -1,0 +1,28 @@
+{
+	"payment_transaction":
+	{
+		"id_cart":22, 
+		"buyer_name":"Joseph Joestar", 
+		"buyer_email":"joestar@gmail.com", 
+		"buyer_email_confirmation":"joestar@gmail.com", 
+		"seller_id":"204253", 
+		"shipping_name":"Joseph Joestar", 
+		"phone":"0235544321", 
+		"address_attributes":
+		{
+			"province":"DKI Jakarta", 
+			"city":"Jakarta Selatan", 
+			"area":"Mampang Prapatan", 
+			"address":"Jl. Bangka", 
+			"post_code":"34521"
+		}, 
+		"buyer_notes":"",
+		"courier":"JNE REG", 
+		"with_insurance":"0", 
+		"voucher_code":"", 
+		"bca": "1", 
+		"mandiri": "2", 
+		"bni": "3", 
+		"bri": "4"
+	}
+}

@@ -1,0 +1,18 @@
+<div class="zIndex-99 position-absolute display-block bg-dark width-100-percent height-100-percent">
+	<div class="col-xs-12 no-padding no-margin bg-light position-absolute bottom-0 zIndex-99">
+		<div class="col-xs-10 no-padding no-margin">
+			<div class="padding-5 text-small line-height-17">
+				<div class="display-block">Di upload oleh: <strong>{{ ::foto.pengirim }}</strong></div>
+				<div class="display-block">Tanggal upload: <strong>{{ ::foto.tanggal }}</strong></div>
+			</div>
+		</div>
+		<div class="col-xs-2 no-padding no-margin text-right">
+			<button class="button button-assertive" ng-click="tutupFoto()">Tutup</button>
+		</div>
+	</div>
+	<div class="col-xs-12 no-padding no-margin height-100-percent padding-20 overflow-hide position-relative text-center">
+		<div class="width-xs-100-percent width-ss-100-percent width-sm-100-percent width-md-initial width-xl-initial height-xs-initial height-ss-initial height-sm-initial height-md-initial height-lg-93-percent height-xl-93-percent overflow-hide position-relative">
+			<img data-ng-src="{{ ::foto.file.prefix }}original{{ ::foto.file.suffix }}" class="width-xs-100-percent width-ss-100-percent width-sm-100-percent width-md-initial width-xl-initial height-xs-initial height-ss-initial height-sm-initial height-md-initial height-lg-100-percent height-xl-100-percent" />
+		</div>
+	</div>
+</div>

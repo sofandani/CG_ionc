@@ -1,0 +1,37 @@
+<div class="width-100-percent width-ss-400 width-sm-500 width-md-600 width-lg-650 ">
+	<div class="boder-solid boder-1 border-gray">
+		<div class="col-xs-12 no-padding">
+			<div class="col-mc-4 col-xs-3 col-ss-3 col-sm-2 col-md-2 col-lg-2 no-padding">
+				<img data-ng-src="{{ ::data.gambar }}" class="v-align-middle width-95-percent" />
+			</div>
+			<div class="col-mc-8 col-xs-5 col-ss-5 col-sm-6 col-md-6 col-lg-6 no-padding text-capitalize v-align-top">
+				<h3 class="no-margin text-big-mc text-middle-xs text-big-ss text-huge-sm text-huge-md text-huge-lg line-height-22-md">
+					{{ ::data.nama }}
+				</h3>
+				<span class="display-none">
+					{{ ::data.id }}
+				</span>
+			</div>
+			<div class="col-xs-12 col-ss-4 col-sm-4 col-md-4 col-lg-4 no-padding text-right">
+
+			  <label class="item item-input item-select">
+			    <div class="input-label">
+			      Jumlah Barang:
+			    </div>
+				  <select name="qty" ng-init="quantity.total = quantity.total+1 || [1]" ng-model="quantity.total" ng-options="n as n for n in [] | range:1:data.stok">
+				  </select>
+			  </label>
+			  
+			</div>
+		</div>
+		<div class="col-xs-12 no-padding padding-top-10 no-margin margin-top-15 border-solid border-1 border-top border-energized bg-light">
+			<div class="col-xs-8 v-align-middle no-padding text-right text-small text-gray no-margin no-padding">*belum termasuk ongkos kirim & kode transaksi</div>
+			<div class="col-xs-4 no-padding text-right">
+				<div class="text-right">Total Harga:</div>
+				<h4 class="text-assertive no-margin">
+					Rp. {{ (quantity.total * data.harga | number) }}
+				</h4>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,16 @@
+<ion-view view-title="Beli {{ ::product.name }}">
+
+  <ion-content class="has-header bg-gray-lighter" padding="true">
+    <div class="margin-10">
+      <h2 ng-bind="product.name" class="text-capitalize"></h2>
+      <form novalidate class="css-form" ng-submit="submitBuy()">
+        Nama: <input type="text" ng-model="fields.name" required /><br />
+        E-mail: <input type="email" ng-model="fields.email" required /><br />
+        Alamat: <input type="address" ng-model="fields.address" required /><br />
+        <input type="button" ng-click="reset()" value="Reset" />
+        <input type="submit" value="Save" />
+      </form>
+    </div>
+  </ion-content>
+
+</ion-view>

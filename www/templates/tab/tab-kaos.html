@@ -1,0 +1,53 @@
+<ion-view view-title="Kaos {{ ::nama_kaos }}">
+
+    <ion-content class="has-header">
+
+        <div class="header-list-card">
+          
+          <ion-list class="card no-margin">
+
+              <ion-item class="wrap item-thumbnail bg-gray-lighter col-xs-12 col-sm-12 col-md-5 col-lg-5">
+                <img data-ng-src="http://tees.co.id/public/uploads/images/{{ ::tees.store_id }}/{{ ::tees.id }}/cache/{{ ::tees.id }}_{{ ::tees.default_model_id }}_{{ ::tees.default_color_id }}_front.png" class="width-100-percent" />
+              </ion-item>
+
+              <ion-item class="item-body col-xs-12 col-sm-12 col-md-7 col-lg-7">
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 no-padding">
+                  Harga:<br />
+                  <span ng-if="tees.is_discount == 1">
+                    <strike class="text-normal-xs text-middle-sm text-big-md text-huge-xl">Rp. {{ (tees.price | number) }}</strike>
+                    <br />
+                    <span class="text-assertive text-middle-xs text-big-sm text-huge-md text-giant-xl">
+                      Rp. {{ (tees.price_discount | number) }}
+                    </span>
+                  </span>
+                  <span ng-if="tees.is_discount == 0" class="text-assertive text-big-xs text-huge-sm text-huge-md text-giant-xl">
+                    Rp. {{ (tees.price | number) }}
+                  </span>
+                  </div>
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 no-padding text-center">
+                    <button class="button button-full button-balanced icon-left ion-android-cart nowrap">
+                      <span class="col-mc-show col-xs-show col-ss-show col-sm-hide col-md-hide col-lg-hide col-xl-hide">Beli Kaos Ini</span>
+                      <span class="col-mc-hide col-xs-hide col-ss-hide col-sm-show col-md-show col-lg-show col-xl-show">Beli Kaos Khas Ini</span>
+                    </button>
+                  </div>
+              </ion-item>
+              </ion-item>
+
+              <ion-item class="item-body" ng-if="tees.description">
+                <div class="text-justify text-normal-xs text-middle-sm text-middle-md text-big-lg text-huge-xl">
+                    {{ ::tees.description }}
+                </div>
+              </ion-item>
+
+              <ion-item class="item-body">
+                  <a class="button button-block button-dark" ui-sref="main.tab-kaos.tos({typetos: 'tees'})">
+                      <i class="ion-help-circled"></i> Lihat Tata Cara Pembelian
+                  </a>
+              </ion-item>
+
+          </ion-list>
+
+        </div>
+
+    </ion-content>
+</ion-view>

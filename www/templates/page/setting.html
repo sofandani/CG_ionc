@@ -1,0 +1,70 @@
+<ion-view view-title="Setting">
+  <ion-content>
+  	<div class="list">
+
+	    <ion-item>
+	    	<h2 class="text-bold text-big-xs important">
+	    		Masukan Informasi Siapa Anda
+	    	</h2>
+	    	<p class="margin-bottom-15 important wrap text-normal-mc text-normal-xs text-middle-sm">
+	    		Data diri anda dibutuhkan untuk informasi pembelian produk dalam proses pembayaran & pengiriman
+	    	</p>
+	    	<form ng-submit="simpanDataPribadi()">
+				<div class="no-padding col-ss-12 col-xs-12 col-sm-12 col-md-6">
+					<div class="col-mc-2 col-xs-2 text-normal-mc text-small-xs text-middle-sm padding-top-10 padding-bottom-10 padding-left-0 padding-right-0 important text-right">Nama:</div>
+					<div class="col-ss-7 col-sm-8 col-md-9 item item-input padding-0 margin-5">
+						<label class="item-input-wrapper">
+							<i class="icon ion-person placeholder-icon"></i>
+							<input type="text" placeholder="masukan nama lengkap..." ng-model="setting.nama">
+						</label>
+					</div>
+				</div>
+				<div class="no-padding col-ss-12 col-xs-12 col-sm-12 col-md-6">
+					<div class="col-mc-2 col-xs-2 text-normal-mc text-small-xs text-middle-sm padding-top-10 padding-bottom-10 padding-left-0 padding-right-0 important text-right">Email:</div>
+					<div class="col-ss-7 col-sm-8 col-md-9 item item-input padding-0 margin-5">
+						<label class="item-input-wrapper">
+							<i class="icon ion-email placeholder-icon"></i>
+							<input type="email" placeholder="masukan email aktif..." ng-model="setting.email">
+						</label>
+					</div>
+				</div>
+				<div class="no-padding col-ss-12 col-xs-12 col-sm-12 col-md-6">
+					<div class="col-mc-2 col-xs-2 text-normal-mc text-small-xs text-middle-sm padding-top-10 padding-bottom-10 padding-left-0 padding-right-0 important text-right">Kontak:</div>
+					<div class="col-ss-7 col-sm-8 col-md-9 item item-input padding-0 margin-5">
+						<label class="item-input-wrapper">
+							<i class="icon ion-android-call placeholder-icon"></i>
+							<input type="text" placeholder="masukan nomor kontak aktif..." ng-model="setting.kontak">
+						</label>
+					</div>
+				</div>
+				<div class="no-padding col-ss-12 col-xs-12 col-sm-12 col-md-6">
+					<div class="col-mc-2 col-xs-2 text-normal-mc text-small-xs text-middle-sm padding-top-10 padding-bottom-10 padding-left-0 padding-right-0 important text-right">Alamat:</div>
+					<div class="col-ss-7 col-sm-8 col-md-9 item item-input padding-0 margin-5">
+						<label class="item-input-wrapper">
+							<textarea placeholder="masukan alamat lengkap.." ng-model="setting.alamat" class="bg-gray-lighter" rows="5"></textarea>
+						</label>
+					</div>
+				</div>
+				<div class="no-padding col-ss-12 margin-top-10 important clearfix">
+					<button type="submit" class="button button-assertive button-full">
+						Simpan Informasi
+					</button>
+				</div>
+			</form>
+		</ion-item>
+
+	    <ion-toggle ng-repeat="itemSet in settingsList" ng-model="itemSet.value" ng-checked="itemSet.value" ng-change="saveSettings()">
+	        {{ ::itemSet.name }}
+	    </ion-toggle>
+	    <div class="item padding-top-20 padding-bottom-20 important">
+    		<div class="wrap">
+    			<div class="col-mc-9 col-xs-9 no-padding line-height-30">Hapus Data Penyimpanan</div>
+    			<div class="col-mc-3 col-xs-3 no-padding text-right">
+	    			<button class="button button-small button-assertive icon-left ion-trash-a cursor-pointer zIndex-15" ng-click="hapusCache()">Hapus</button>
+	    		</div>
+    		</div>
+	    </div>
+
+	</div>
+  </ion-content>
+</ion-view>

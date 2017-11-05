@@ -1,0 +1,73 @@
+<ion-view view-title="{{ ::venuename }}">
+
+    <ion-content class="has-header cover-background" padding="true" ng-attr-style="{{photo != null && 'background-image:url('+photo[0].prefix+'24x100/blur20'+photo[0].suffix+')' || '' }}">
+
+        <div ng-if="code == 200" class="header-list-card">
+          
+          <ion-list class="card no-padding no-margin important">
+
+              <ion-item class="wrap item-thumbnail bg-gray-lighter">
+                  <h2 ng-bind="venue.name" class="text-big-xs text-big-ss text-huge-sm text-huge-md text-giant-xl important"></h2>
+                  <p class="wrap"><i class="ion-android-pin"></i> {{venue.location.formattedAddress.join(', ')}}</p>
+              </ion-item>
+
+              <ion-item class="item-body item-icon-right padding-0" ng-if="venue.contact.phone">
+                  <a class="text-dark display-inline-block padding-15" ng-href="tel:{{ ::venue.contact.phone }}">
+                    <i class="icon ion-ios-telephone"></i> <strong>{{ ::venue.contact.phone }}</strong>
+                  </a>
+              </ion-item>
+
+              <ion-item class="item-body" ng-if="venue.description">
+                <div class="text-justify">
+                    {{ ::venue.description }}
+                </div>
+              </ion-item>
+
+              <span ng-if="venue.description && venue.contact.phone">                
+                <div ng-if="venue.tips.count > 0" class="item" id="tips">
+                    <span ng-repeat="tip in venue.tips.groups[0].items | limitTo:2" class="item item-avatar">
+                        <img data-ng-src="{{ ::tip.user.photo.prefix }}32x32{{ ::tip.user.photo.suffix }}" width="32" height="32" />
+                        <h4 class="no-margin">{{ ::tip.user.firstName }} {{ ::tip.user.lastName }} &middot; <span class="text-normal text-gray"> {{tip.createdAt * 1000 | date: 'dd, MMMM yyyy'}}</span></h4>
+                        <p class="wrap no-margin">{{ ::tip.text }}</p>
+                    </span>
+
+                    <a ng-if="venue.tips.groups[0].items.length >= 2" class="button button-block button-balanced" ui-sref="main.tabs.venue-tips({venueId: venue.id, venueName: venue.name})">
+                        <i class="ion-ios-lightbulb"></i> Lihat semua tips ({{ ::venue.stats.tipCount }})
+                    </a>
+                </div>
+              </span>
+
+              <span ng-if="venue.description && !venue.contact.phone || !venue.description && venue.contact.phone">                
+                <div ng-if="venue.tips.count > 0" class="item" id="tips">
+                    <span ng-repeat="tip in venue.tips.groups[0].items | limitTo:3" class="item item-avatar">
+                        <img data-ng-src="{{ ::tip.user.photo.prefix }}32x32{{ ::tip.user.photo.suffix }}" width="32" height="32" />
+                        <h4 class="no-margin">{{ ::tip.user.firstName }} {{ ::tip.user.lastName }} &middot; <span class="text-normal text-gray"> {{tip.createdAt * 1000 | date: 'dd, MMMM yyyy'}}</span></h4>
+                        <p class="wrap no-margin">{{ ::tip.text }}</p>
+                    </span>
+
+                    <a ng-if="venue.tips.groups[0].items.length >= 3" class="button button-block button-balanced" ui-sref="main.tabs.venue-tips({venueId: venue.id, venueName: venue.name})">
+                        <i class="ion-ios-lightbulb"></i> Lihat semua tips ({{ ::venue.stats.tipCount }})
+                    </a>
+                </div>
+              </span>
+
+              <span ng-if="!venue.description && !venue.contact.phone">                
+                <div ng-if="venue.tips.count > 0" class="item" id="tips">
+                    <span ng-repeat="tip in venue.tips.groups[0].items | limitTo:5" class="item item-avatar">
+                        <img data-ng-src="{{ ::tip.user.photo.prefix }}32x32{{ ::tip.user.photo.suffix }}" width="32" height="32" />
+                        <h4 class="no-margin">{{ ::tip.user.firstName }} {{ ::tip.user.lastName }} &middot; <span class="text-normal text-gray"> {{tip.createdAt * 1000 | date: 'dd, MMMM yyyy'}}</span></h4>
+                        <p class="wrap no-margin">{{ ::tip.text }}</p>
+                    </span>
+
+                    <a ng-if="venue.tips.groups[0].items.length >= 5" class="button button-block button-balanced" ui-sref="main.tabs.venue-tips({venueId: venue.id, venueName: venue.name})">
+                        <i class="ion-ios-lightbulb"></i> Lihat semua tips ({{ ::venue.stats.tipCount }})
+                    </a>
+                </div>
+              </span>
+
+          </ion-list>
+
+        </div>
+
+    </ion-content>
+</ion-view>

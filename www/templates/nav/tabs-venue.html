@@ -1,0 +1,22 @@
+<!-- ion-view view-title="Loka {{ ::CityName }}" left-buttons="leftButtons" -->
+
+    <ion-tabs class="tabs-icon tabs-color-dark tabs-background-energized tabs-striped tabs-bottom">
+
+        <ion-tab ng-if="listid != 'cari'" title="Daftar Loka" icon="ion-chevron-left" ui-sref="main.kategori-loka({listsID: listid})"></ion-tab>
+        <ion-tab ng-if="listid == 'cari'" title="Pencarian Loka" icon="ion-chevron-left" ui-sref="main.cari"></ion-tab>
+
+        <ion-tab title="Loka" icon="ion-ios-location" ui-sref="main.tabs.venue">
+            <ion-nav-view name="venue-tab"></ion-nav-view>
+        </ion-tab>
+
+        <ion-tab title="Peta" icon="ion-map" ui-sref="main.tabs.venue-map">
+            <ion-nav-view name="map-tab"></ion-nav-view>
+        </ion-tab>
+
+        <ion-tab title="Galeri Foto" icon="ion-images" ui-sref="main.tabs.venue-photo">
+            <ion-nav-view name="photo-tab"></ion-nav-view>
+        </ion-tab>
+
+    </ion-tabs>
+
+<!-- /ion-view -->

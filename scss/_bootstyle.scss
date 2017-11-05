@@ -1,0 +1,703 @@
+/* Variable Ukuran Teks */
+$data_text_size: (
+  'nano':'3px',
+  'micro':'7px',
+  'small':'9px',
+  'normal':'12px',
+  'middle':'14px',
+  'semi-big':'16px',
+  'big':'18px',
+  'huge':'23px',
+  'giant':'35px',
+  'massive':'49px',
+  'super-massive':'65px',
+  'tera':'82px',
+  'super-tera':'100px'
+);
+
+
+/* Fungsi @mixin untuk membuat css ukuran teks sesuai layar */
+@mixin pembuatan-ukuran-teks-layar($naming, $data)
+{
+  @each $texclass, $textsize in $data
+  {
+    .text-#{$texclass}-#{$naming}
+    {
+      font-size: #{$textsize};
+    }
+    .text-#{$texclass}-#{$naming}.important
+    {
+      font-size: #{$textsize} !important;
+    }
+  }
+}
+
+
+/* Fungsi @mixin untuk membuat ukuran layar dalam bentuk @media screen CSS */
+@mixin pembuatan-kolom-ukuran-layar($naming, $suffix)
+{
+  @for $i from 1 through 12
+  {
+    $angkakolom: $i * 8.33333333;
+
+    .col-#{$naming}#{$suffix}-#{$i} {
+      width: #{$angkakolom + '%'};
+    }
+  }
+}
+
+
+/* Fungsi @mixin untuk membuat fungsi float:left CSS pada kolom */
+%float-styles-kolom-mc
+{
+  float: left;
+}
+@mixin pembuatan-rata-kiri-kolom-mc($total)
+{
+  @for $i from 1 through $total
+  {
+    .col-mc-#{$i}
+    {
+      @extend %float-styles-kolom-mc;
+    }
+  }
+
+  .col-mc-hide
+  {
+    display: none
+  }
+
+  .col-mc-show
+  {
+    display: inline
+  }
+}
+
+
+@each $i in (30,40,50,60,70,80,90,100,125,150,200,225,250,300,350,400,450,500,550,600,650,700,750,800)
+{
+  .width-mc-#{$i}
+  {
+    width: #{$i+'px'}
+  }
+}
+
+
+%posisi-dasar-kolom
+{
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@mixin pembuatan-posisi-dasar-kolom($namakolom, $dari, $ke)
+{
+  @each $n in $namakolom
+  {
+    @for $i from $dari through $ke
+    {
+      .col-#{$n}-#{$i}
+      {
+        @extend %posisi-dasar-kolom;
+      }
+    }
+  }
+}
+
+
+
+@mixin pembuatan-ruang-jeda-elemen($posisi, $from, $to, $suffix)
+{
+  @each $pos in $posisi
+  {
+    @for $i from $from through $to
+    {
+      .#{$pos}#{$suffix}-#{$i} { #{$pos}: #{$i + 'px'}; }
+      .#{$pos}#{$suffix}-#{$i}-prcnt { #{$pos}: #{$i + '%'}; }
+      .padding-#{$pos}#{$suffix}-#{$i} { padding-#{$pos}: #{$i + 'px'}; }
+      .padding-#{$pos}#{$suffix}-#{$i}-prcnt { padding-#{$pos}: #{$i + '%'}; }
+      .margin-#{$pos}#{$suffix}-#{$i} { margin-#{$pos}: #{$i + 'px'}; }
+      .margin-#{$pos}#{$suffix}-#{$i}-prcnt { margin-#{$pos}: #{$i + '%'}; }
+      .border-#{$pos}#{$suffix}-#{$i} { border-#{$pos}: #{$i + 'px'}; }
+
+      .#{$pos}#{$suffix}-#{$i}.important { #{$pos}: #{$i + 'px !important'}; }
+      .#{$pos}#{$suffix}-#{$i}-prcnt.important { #{$pos}: #{$i + '% !important'}; }
+      .padding-#{$pos}#{$suffix}-#{$i}.important { padding-#{$pos}: #{$i + 'px !important'}; }
+      .padding-#{$pos}#{$suffix}-#{$i}-prcnt.important { padding-#{$pos}: #{$i + '% !important'}; }
+      .margin-#{$pos}#{$suffix}-#{$i}.important { margin-#{$pos}: #{$i + 'px !important'}; }
+      .margin-#{$pos}#{$suffix}-#{$i}-prcnt.important { margin-#{$pos}: #{$i + '% !important'}; }
+      .border-#{$pos}#{$suffix}-#{$i}.important { border-#{$pos}: #{$i + 'px !important'}; }
+    }
+  }
+}
+
+
+
+.clearfix:before,
+.clearfix:after,
+.container:before,
+.container:after,
+.container-fluid:before,
+.container-fluid:after,
+.row:before,
+.row:after {
+  content: " ";
+  display: table;
+}
+.clearfix:after,
+.container:after,
+.container-fluid:after,
+.row:after {
+  clear: both;
+}
+
+
+@include pembuatan-ruang-jeda-elemen($posisi: ('top','bottom','left','right'), $suffix:'-mc', $from: 0, $to: 50);
+@include pembuatan-posisi-dasar-kolom($namakolom: ('mc','xs','ss','sm','md','lg','xl','hg'), $dari: 1, $ke: 12);
+@include pembuatan-rata-kiri-kolom-mc(12);
+@include pembuatan-kolom-ukuran-layar('mc', '');
+@include pembuatan-kolom-ukuran-layar('mc', '-pull');
+@include pembuatan-kolom-ukuran-layar('mc', '-push');
+@include pembuatan-kolom-ukuran-layar('mc', '-offset');
+@include pembuatan-ukuran-teks-layar('mc', $data: $data_text_size);
+
+
+@mixin pembuatan-tinggi-lebar-ukuran-persen($naming, $dari, $ke)
+{
+  @for $i from $ke through $dari {
+    .width#{$naming}-#{$i}-percent { width: #{$i + '%'}; }
+    .height#{$naming}-#{$i}-percent { height: #{$i + '%'}; }
+  }
+
+  .width#{$naming}-initial { width: initial; }
+  .height#{$naming}-initial { height: initial; }
+  .width#{$naming}-auto { width: auto; }
+  .height#{$naming}-auto { height: auto; }
+  .width#{$naming}-inherit { width: inherit; }
+  .height#{$naming}-inherit { height: inherit; }
+
+  .margin#{$naming}-auto {margin: auto}
+}
+
+
+@mixin pembagian-total-tingggi-lebar-persen($naming, $dari, $ke)
+{
+  @for $i from $ke through $dari {
+    .width#{$naming}-100-#{$i} { width: #{'calc(100%/' +$i + ')'}; }
+    .height#{$naming}-100-#{$i} { height: #{'calc(100%/' +$i + ')'}; }
+  }
+}
+
+
+@include pembuatan-tinggi-lebar-ukuran-persen('-mc', 1, 100);
+@include pembagian-total-tingggi-lebar-persen('-mc', 1, 10);
+@include pembuatan-tinggi-lebar-ukuran-persen('', 20, 100);
+
+@mixin mediawidth($collection)
+{
+  @each $sizing, $naming in $collection
+  {
+    @media screen and (min-width: $sizing)
+    {
+
+      .col-#{$naming}-1,
+      .col-#{$naming}-2,
+      .col-#{$naming}-3,
+      .col-#{$naming}-4,
+      .col-#{$naming}-5,
+      .col-#{$naming}-6,
+      .col-#{$naming}-7,
+      .col-#{$naming}-8,
+      .col-#{$naming}-9,
+      .col-#{$naming}-10,
+      .col-#{$naming}-11,
+      .col-#{$naming}-12
+      {
+        float: left;
+      }
+
+      .col-#{$naming}-hide
+      {
+        display: none
+      }
+
+      .col-#{$naming}-show
+      {
+        display: inline
+      }
+
+      @each $i in (30,40,50,60,70,80,90,100,125,150,200,225,250,300,350,400,450,500,550,600,650,700,750,800)
+      {
+        .width-#{$naming}-#{$i}
+        {
+          width: #{$i+'px'}
+        }
+      }
+
+      @include pembuatan-kolom-ukuran-layar($naming, '');
+      @include pembuatan-kolom-ukuran-layar($naming, '-pull');
+      @include pembuatan-kolom-ukuran-layar($naming, '-push');
+      @include pembuatan-kolom-ukuran-layar($naming, '-offset');
+
+      @include pembuatan-ukuran-teks-layar($naming, $data: $data_text_size);
+
+      @include pembuatan-tinggi-lebar-ukuran-persen('-'+$naming, 1, 100);
+      @include pembagian-total-tingggi-lebar-persen('-'+$naming, 1, 10);
+
+      @include pembuatan-ruang-jeda-elemen($posisi: ('top','bottom','left','right'), $suffix:'-'+$naming, $from: 0, $to: 50);
+
+    }
+  }
+}
+
+@include mediawidth($collection: ('359px':'xs','479px':'ss', '639px':'sm', '992px':'md', '1199px':'lg', '1559px':'xl', '2559px':'hg'));
+
+
+.margin-none
+{
+  margin:0 !important;
+}
+.padding-none
+{
+  padding:0 !important;
+}
+
+
+// Loop Padding, Margin & Border Radius Class
+.no-margin, .no-margin-child > * {margin:0}
+.no-padding, .no-padding-child > * {padding:0}
+
+.no-margin.important, .no-margin-important,
+.no-margin-child.important, .no-margin-child-important > * {margin:0 !important}
+.no-padding.important, .no-padding-important,
+.no-padding-child.important, .no-padding-child-important > * {padding:0 !important}
+
+
+
+
+@for $i from 0 through 30
+{
+  // Padding
+  .padding-#{$i} { padding: #{$i+'px'}; }
+  .padding-#{$i}-#{$i}-0-0 { padding: #{$i+'px '+$i+'px 0 0'}; }
+  .padding-0-0-#{$i}-#{$i} { padding: #{'0 0 '+$i+'px '+$i+'px'}; }
+  .padding-#{$i}-0-#{$i}-0 { padding: #{$i+'px'+' 0 '+$i+'px 0'}; }
+  .padding-0-#{$i}-0-#{$i} { padding: #{' 0 '+$i+'px 0 '+$i+'px'}; }
+  /*
+  .padding-#{$i}-0-0-0 { padding: #{$i+'px'+' 0 0 0'}; }
+  .padding-0-#{$i}-0-0 { padding: #{'0 '+$i+'px'+' 0 0'}; }
+  .padding-0-0-#{$i}-0 { padding: #{' 0 0 '+$i+'px 0'}; }
+  .padding-0-0-0-#{$i} { padding: #{' 0 0 0 '+$i+'px'}; }
+  .padding-#{$i}-0-0-#{$i} { padding: #{$i+'px 0 0 '+$i+'px'}; }*/
+
+
+  .padding-#{$i}-prcnt { padding: #{$i+'%'}; }
+  .padding-#{$i}-#{$i}-0-0-prcnt { padding: #{$i+'% '+$i+'% 0 0'}; }
+  .padding-0-0-#{$i}-#{$i}-prcnt { padding: #{'0 0 '+$i+'% '+$i+'%'}; }
+  .padding-#{$i}-0-#{$i}-0-prcnt { padding: #{$i+'% 0 '+$i+'% 0'}; }
+  .padding-0-#{$i}-0-#{$i}-prcnt { padding: #{' 0 '+$i+'% 0 '+$i+'%'}; }
+
+  // Margin
+  .margin-#{$i} { margin: #{$i+'px'}; }
+  .margin-#{$i}-#{$i}-0-0 { margin: #{$i+'px'+$i+'px 0 0'}; }
+  .margin-0-0-#{$i}-#{$i} { margin: #{'0 0 '+$i+'px '+$i+'px'}; }
+  .margin-#{$i}-0-#{$i}-0 { margin: #{$i+'px'+' 0 '+$i+'px 0'}; }
+  .margin-0-#{$i}-0-#{$i} { margin: #{' 0 '+$i+'px 0 '+$i+'px'}; }
+
+  .margin-#{$i}-prcnt { margin: #{$i+'%'}; }
+  .margin-#{$i}-#{$i}-0-0-prcnt { margin: #{$i+'% '+$i+'% 0 0'}; }
+  .margin-0-0-#{$i}-#{$i}-prcnt { margin: #{'0 0 '+$i+'% '+$i+'%'}; }
+  .margin-#{$i}-0-#{$i}-0-prcnt { margin: #{$i+'% 0 '+$i+'% 0'}; }
+  .margin-0-#{$i}-0-#{$i}-prcnt { margin: #{' 0 '+$i+'% 0 '+$i+'%'}; }
+  
+  .border-radius-#{$i} { border-radius: #{$i+'px'}; }
+  .border-#{$i} {border-width: #{$i+'px'};}
+  .blur-#{$i}
+  {
+    -webkit-filter: blur(#{$i+'px'});
+    -moz-filter: blur(#{$i+'px'});
+    -o-filter: blur(#{$i+'px'});
+    -ms-filter: blur(#{$i+'px'});
+    filter: blur(#{$i+'px'});
+  }
+
+  .line-height-#{$i} {line-height: #{$i+'px'}}
+}
+
+@include pembuatan-ruang-jeda-elemen($posisi: ('top','bottom','left','right'), $suffix:'', $from: 0, $to: 30);
+
+
+
+.line-height-initial
+{
+  line-height: initial
+}
+
+.display-inline-block
+{
+	display: inline-block;
+}
+.display-block
+{
+	display: block;
+}
+.display-none
+{
+	display: none;
+}
+.display-inline-table
+{
+	display: inline-table;
+}
+
+.v-align
+{
+	vertical-align: baseline;
+}
+
+@each $position in ('top','bottom','middle')
+{
+  .v-align-#{$position}
+  {
+    vertical-align: #{$position};
+  }
+  .v-align-text-#{$position}
+  {
+    vertical-align: text-#{$position};
+  } 
+}
+
+.overflow-hide{overflow:hidden;}
+.overflow-auto{overflow:auto;}
+.overflow-y-hide{overflow-y:hidden;}
+.overflow-x-hide{overflow-x:hidden;}
+.overflow-y-auto{overflow-y:auto;}
+.overflow-x-auto{overflow-x:auto;}
+
+
+// Loop zIndex Class
+@each $i in (0,1,9,15,20,55,99)
+{
+  .zIndex-#{$i} { z-index: $i; }
+}
+
+
+// Loop Opacity Class
+@for $i from 1 through 9 {
+	.opacity-#{$i} { opacity: #{'0.' + $i}; }
+}
+
+.text-justify {
+	text-align: justify
+}
+
+.text-bold
+{
+  font-weight: bold
+}
+.text-bold.important,
+.text-bold-important
+{
+  font-weight: bold !important
+}
+
+
+
+@each $colorelement, $colorhexa in (
+  'gray':$gray,
+  'gray-lighter':$gray-lighter,
+  'light':$light,
+  'stable':$stable,
+  'positive':$positive,
+  'calm':$calm,
+  'balanced':$balanced,
+  'energized':$energized,
+  'assertive':$assertive,
+  'royal':$royal,
+  'dark':$dark)
+{
+  .text-#{$colorelement}
+  {
+    color: $colorhexa;
+  }
+  .bg-hover-#{$colorelement}:hover
+  {
+    background-color: $colorhexa;
+  }
+  .bg-#{$colorelement}
+  {
+    background-color: $colorhexa;
+  }
+  .border-#{$colorelement}{border-color:$colorhexa}
+
+  @each $pos in ('top','bottom','left','right')
+  {
+    .border-#{$pos}-#{$colorelement}{border-#{$pos}-color:$colorhexa}
+  }
+}
+
+
+
+.no-bg{
+  background:none
+}
+.no-bg-important{
+  background:none !important
+}
+
+
+
+.no-border-radius{border-radius:0}
+.no-border{border:none}
+.no-border.important{border:none !important}
+.border-solid{border-style:solid}
+.border-dahsed{border-style:dashed}
+.border-dotted{border-style:dotted}
+.border-double{border-style:double}
+
+.border-top{
+	border-right:none;
+	border-left:none;
+	border-bottom:none;
+}
+.border-bottom{
+	border-right:none;
+	border-left:none;
+	border-top:none;
+}
+.border-left
+{
+	border-right:none;
+	border-top:none;
+	border-bottom:none;
+}
+.border-right
+{
+	border-top:none;
+	border-left:none;
+	border-bottom:none;
+}
+.border-top-right,
+.border-right-top
+{
+    border-left:none;
+    border-bottom:none;
+}
+.border-bottom-right,
+.border-right-bottom
+{
+    border-left:none;
+    border-top:none;
+}
+.border-top-left,
+.border-left-top
+{
+    border-right:none;
+    border-bottom:none;
+}
+.border-bottom-left,
+.border-left-bottom
+{
+    border-right:none;
+    border-top:none;
+}
+.border-left-right,
+.border-right-left
+{
+    border-top:none;
+    border-bottom:none;
+}
+.border-top-bottom,
+.border-bottom-top
+{
+    border-left:none;
+    border-right:none;
+}
+.border-top-bottom-left,
+.border-left-bottom-top,
+.border-top-left-bottom
+{
+    border-right:none;
+}
+.border-top-bottom-right,
+.border-right-bottom-top,
+.border-top-right-bottom
+{
+    border-left:none;
+}
+.border-left-bottom-right,
+.border-right-bottom-left,
+.border-left-right-bottom
+{
+    border-top:none;
+}
+.border-left-top-right,
+.border-right-top-left,
+.border-left-right-top
+{
+    border-bottom:none;
+}
+*:first-child.border-first-top,
+.border-first-top > *:first-child
+{
+    border-right:none;
+    border-left:none;
+    border-bottom:none;
+}
+*:first-child.border-first-bottom,
+.border-first-bottom > *:first-child
+{
+    border-right:none;
+    border-left:none;
+    border-top:none;
+}
+*:first-child.border-first-left,
+.border-first-left > *:first-child
+{
+    border-right:none;
+    border-top:none;
+    border-bottom:none;
+}
+*:first-child.border-first-right,
+.border-first-right > *:first-child
+{
+    border-top:none;
+    border-left:none;
+    border-bottom:none;
+}
+*:first-child.noborder-first-top,
+.noborder-first-top > *:first-child
+{
+    border-top:none;
+}
+*:first-child.noborder-first-bottom,
+.noborder-first-bottom > *:first-child
+{
+    border-bottom:none;
+}
+*:first-child.noborder-first-left,
+.noborder-first-left > *:first-child
+{
+    border-left:none;
+}
+*:first-child.noborder-first-right,
+.noborder-first-right > *:first-child
+{
+    border-right:none;
+}
+*:last-child.border-last-top,
+.border-last-top > *:last-child
+{
+    border-right:none;
+    border-left:none;
+    border-bottom:none;
+}
+*:last-child.border-last-bottom,
+.border-last-bottom > *:last-child
+{
+    border-right:none;
+    border-left:none;
+    border-top:none;
+}
+*:last-child.border-last-left,
+.border-last-left > *:last-child
+{
+    border-right:none;
+    border-top:none;
+    border-bottom:none;
+}
+*:last-child.border-last-right,
+.border-last-right > *:last-child
+{
+    border-top:none;
+    border-left:none;
+    border-bottom:none;
+}
+*:last-child.noborder-last-top,
+.noborder-last-top > *:last-child
+{
+    border-top:none;
+}
+*:last-child.noborder-last-bottom,
+.noborder-last-bottom > *:last-child
+{
+    border-bottom:none;
+}
+*:last-child.noborder-last-left,
+.noborder-last-left > *:last-child
+{
+    border-left:none;
+}
+*:last-child.noborder-last-right,
+.noborder-last-right > *:last-child
+{
+    border-right:none;
+}
+
+.item.wrap, .item-content.wrap, .wrap {
+	white-space: normal !important
+}
+.item.nowrap, .item-content.nowrap, .nowrap {
+  white-space: nowrap !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cursor-pointer{
+  cursor: pointer
+}
+.cursor-wait{
+  cursor: wait
+}
+.cursor-help{
+  cursor: help
+}
+.cursor-progress{
+  cursor: progress
+}
+.cursor-default{
+  cursor: default
+}
+
+.fullscreen-elm{
+  width: 100%;
+  height: 100%;
+}
+
+.position-relative{
+  position: relative
+}
+.position-absolute{
+  position: absolute
+}
+.position-fixed{
+  position: fixed
+}
+
+.float-left{
+  float: left
+}
+
+.float-right{
+  float: right
+}
+
+ul.normal-list {
+  list-style-type: disc;
+}
+
+ol.normal-list {
+  list-style-type: decimal;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+.text-lowercase {
+    text-transform: lowercase;
+}
+
+.text-capitalize {
+    text-transform: capitalize;
+}

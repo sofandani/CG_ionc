@@ -1,0 +1,12 @@
+<ion-view view-title="Informasi Library App">
+
+  <ion-content has-header="true" padding="false" class="bg-light">
+  	<div class="clearfix display-inline-block width-100-percent">
+  		<div ng-repeat="lib in library_info" class="col-mc-6 col-sm-6 col-md-4 col-lg-3 text-center border-1 border-all border-gray-lighter border-solid bg-light padding-top-10-prcnt padding-bottom-10-prcnt">
+  			<h3 class="no-margin text-middle-mc text-middle-xs text-big-sm text-huge-md text-giant-lg">{{ ::lib.txt }}</h3>
+  			<a target="_blank" href="https://www.google.com/search?q={{ ::lib.txt }}">Official Web</a>
+  		</div>
+  	</div>
+  </ion-content>
+
+</ion-view>

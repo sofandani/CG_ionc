@@ -1,0 +1,128 @@
+<ion-view view-title="Kasir">
+
+  <ion-content class="has-header bg-gray-lighter" padding="true">
+
+    <ion-list ng-if="kasir.status == 'OK'" class="card no-padding no-margin important">
+
+        <ion-item class="wrap bg-light">
+            <div class="row clearfix">
+              <table border="0" class="width-100-percent text-normal-mc text-normal-xs text-middle-sm text-big-md text-huge-lg text-huge-xl">
+                <tr>
+                  <td rowspan="5" class="v-align-top width-mc-60 width-xs-80 width-sm-150 width-md-200">
+                    <a ui-sref="main.tab-oleholeh.info({id: kasir.cart[0].items[0].product.id})" class="width-100-percent text-assertive display-inline-block">
+                      <img data-ng-src="{{ ::kasir.cart[0].items[0].product.small_images[0] }}" class="width-100-percent" />
+                    </a>
+                  </td>
+                  <td align="right" class="width-20-percent v-align-middle border-solid border-1 border-gray-lighter padding-10">
+                    Penjual:
+                  </td>
+                  <td class="v-align-middle border-solid border-1 border-gray-lighter padding-10 text-capitalize">
+                    {{ ::kasir.cart[0].seller.name }}
+                  </td>
+                </tr><tr>
+                  <td align="right" class="width-20-percent v-align-middle border-solid border-1 border-gray-lighter padding-10">
+                    Nama<span class="col-mc-hide col-xs-hide col-sm-show"> Barang</span>:
+                  </td>
+                  <td class="v-align-middle border-solid border-1 border-gray-lighter padding-10">
+                    <a ui-sref="main.tab-oleholeh.info({id: kasir.cart[0].items[0].product.id})" class="text-assertive display-inline-block">
+                      <span class="col-mc-show col-xs-show col-sm-hide">{{ ::(kasir.cart[0].items[0].name | truncate:22) }}</span>
+                      <span class="col-mc-hide col-xs-hide col-sm-show">{{ ::kasir.cart[0].items[0].name }}</span>
+                    </a> <i class="icon ion-link col-xs-hide col-sm-show"></i>
+                  </td>
+                </tr><tr>
+                  <td align="right" class="width-20-percent v-align-middle border-solid border-1 border-gray-lighter padding-10">
+                    Harga<span class="col-mc-hide col-xs-hide col-sm-show"> Satuan</span>:
+                  </td>
+                  <td class="v-align-middle border-solid border-1 border-gray-lighter padding-10">
+                    Rp. {{ ::(kasir.cart[0].items[0].price - kasir.cart[0].items[0].discount_price | number) }}
+                  </td>
+                </tr><tr>
+                  <td align="right" class="width-20-percent v-align-middle border-solid border-1 border-gray-lighter padding-10">
+                    Jumlah<span class="col-mc-hide col-xs-hide col-sm-show"> Barang</span>:
+                  </td>
+                  <td class="v-align-middle border-solid border-1 border-gray-lighter padding-10">
+                    {{ ::(kasir.cart[0].items[0].quantity | number) }}
+                  </td>
+                </tr><tr>
+                  <td align="right" class="width-20-percent v-align-middle border-solid border-1 border-gray-lighter padding-10">
+                    Total<span class="col-mc-hide col-xs-hide col-sm-show"> Harga</span>:
+                  </td>
+                  <td class="v-align-middle border-solid border-1 border-gray-lighter padding-10">
+                    Rp. {{ ::(kasir.cart[0].items[0].original_price | number) }}
+                  </td>
+                </tr>
+              </table>
+            </div>
+        </ion-item>
+
+        <ion-item>
+            <div class="no-padding clearfix text-normal-xs text-middle-sm text-big-md text-huge-lg text-huge-xl">
+              <div>Hitung Biaya Kirim</div>
+            </div>
+        </ion-item>
+
+        <ion-item>
+          <h2 class="text-middle-xs text-middle-sm text-big-md text-huge-lg text-huge-xl important">
+            Silahkan Isi Informasi Pengiriman Barang
+          </h2>
+          <form ng-submit="simpanDataPribadi()" class="row clearfix no-padding">
+
+              <div class="no-padding col-mc-12 col-ss-12 col-xs-12 col-sm-12 col-md-6">
+                <div class="col-mc-2 col-xs-2 text-normal-mc text-small-xs text-middle-sm padding-top-10 padding-bottom-10 padding-left-0 padding-right-0 important">Nama:</div>
+                <div class="col-mc-10 col-sm-10 col-md-9 item item-input padding-0 margin-5">
+                  <label class="item-input-wrapper" id="search-input">
+                    <i class="icon ion-person placeholder-icon"></i>
+                    <input type="text" placeholder="masukan nama lengkap..." ng-model="setting.nama">
+                  </label>
+                </div>
+              </div>
+
+              <div class="no-padding col-mc-12 col-ss-12 col-xs-12 col-sm-12 col-md-6">
+                <div class="col-mc-2 col-xs-2 text-normal-mc text-small-xs text-middle-sm padding-top-10 padding-bottom-10 padding-left-0 padding-right-0 important">Email:</div>
+                <div class="col-mc-10 col-sm-10 col-md-9 item item-input padding-0 margin-5">
+                  <label class="item-input-wrapper" id="search-input">
+                    <i class="icon ion-email placeholder-icon"></i>
+                    <input type="email" placeholder="masukan alamat email aktif..." ng-model="setting.email">
+                  </label>
+                </div>
+              </div>
+
+              <div class="no-padding col-mc-12 col-ss-12 col-xs-12 col-sm-12 col-md-6">
+                <div class="col-mc-2 col-xs-2 text-normal-mc text-small-xs text-middle-sm padding-top-10 padding-bottom-10 padding-left-0 padding-right-0 important">Kontak:</div>
+                <div class="col-mc-10 col-sm-10 col-md-9 item item-input padding-0 margin-5">
+                  <label class="item-input-wrapper" id="search-input">
+                    <i class="icon ion-android-call placeholder-icon"></i>
+                    <input type="text" placeholder="masukan nomor kontak..." ng-model="setting.kontak">
+                  </label>
+                </div>
+              </div>
+
+              <div class="no-padding col-mc-12 col-ss-12 col-xs-12 col-sm-12 col-md-6">
+                <div class="col-mc-2 col-xs-2 text-normal-mc text-small-xs text-middle-sm padding-top-10 padding-bottom-10 padding-left-0 padding-right-0 important">Alamat:</div>
+                <div class="col-mc-10 col-sm-10 col-md-9 item item-input padding-0 margin-5">
+                  <label class="item-input-wrapper" id="search-input">
+                    <textarea placeholder="masukan alamat pengiriman..." ng-model="setting.alamat" class="bg-gray-lighter" rows="5"></textarea>
+                  </label>
+                </div>
+              </div>
+
+              <div class="no-padding col-mc-6 margin-top-10 important clearfix">
+                <button type="submit" class="button button-assertive button-right">
+                  Simpan Informasi
+                </button>
+              </div>
+
+              <div class="no-padding col-mc-12 margin-top-10 important clearfix">
+                <button type="button" ng-click="CheckOut()" class="button button-assertive button-fab">
+                  Lanjutkan Proses
+                </button>
+              </div>
+
+          </form>
+        </ion-item>
+
+    </ion-list>
+
+  </ion-content>
+
+</ion-view>

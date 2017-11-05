@@ -1,0 +1,17 @@
+<ion-view view-title="{{ ::venueName }}">
+
+    <ion-content class="has-header bg-gray-lighter">
+		
+		<ion-refresher pulling-text="Tarik untuk tips terbaru" on-refresh="tipsVenueRefresh()"></ion-refresher>
+
+        <ion-list class="wrap">
+            <ion-item ng-repeat="tip in tips" class="item-avatar">
+                <img data-ng-src="{{ ::tip.user.photo.prefix }}32x32{{ ::tip.user.photo.suffix }}" width="32" height="32" />
+                <h2>{{ ::tip.user.firstName }} {{ ::tip.user.lastName }} &middot; <span class="text-normal text-gray"> {{tip.createdAt * 1000 | date: 'dd, MMMM yyyy'}}</span></h2>
+                <p class="wrap">{{ ::tip.text }}</p>
+            </ion-item>
+        </ion-list>
+
+	</ion-content>
+
+</ion-view>
